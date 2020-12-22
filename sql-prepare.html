@@ -1,0 +1,102 @@
+<script type="text/javascript">
+    RED.nodes.registerType('sql-prepare',{
+        category: 'function',
+        color: '#fc7f03',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"sql-prepare";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="sql-prepare">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="sql-prepare">
+    <p>A node that converts array data input to sql insert</p>
+	<p>The node needs <code>msg.column_name</code> set as an array of table columns, <code>msg.column_sort</code> as array for data value, <code>msg.command</code> to tell the node what to do, <code>msg.data</code> as array for data select, <code>msg.column_data</code> for update value if the update is used and <code>msg.database</code> as string with the name of the Database table.
+	<br>Example:
+	<br><b>INSERT into Database</b><br>
+		<table><tr><th>column1</th><th>column2</th><th>column3</th><tr>
+		<tr><td>5</td><td>Text</td><td>8</td></tr></table>
+		<br>
+		<code>msg.column_name = [column1,column2,column3];</code><br>
+		<code>msg.column_sort = [5,"Text",8];</code><br>
+		<code>msg.database = "test";</code><br>
+		<code>msg.command = "insert";</code><br>
+		<i>INSERT INTO test (column1,column2,column3) VALUES(5,"Text",8)</i>
+		<br>
+		<br>
+	<b>SELECT hole row (*) from Database</b> <br>
+		<table><tr><th>column1</th><th>column2</th><th>column3</th><tr>
+		<tr><td>5</td><td>Text1</td><td>452</td></tr>
+		<tr><td>6</td><td>Text2</td><td>24</td></tr>
+		<tr><td><b>7</b></td><td><b>Text3</b></td><td><b>25</b></td></tr>
+		<tr><td>8</td><td>Text4</td><td>8</td></tr></table>
+		<br>
+		<code>msg.column_name = [];</code> <br>
+		<code>msg.column_sort = ["column1"];</code><br>
+		<code>msg.data = [7];</code><br>
+		<code>msg.database = "test";</code><br>
+		<code>msg.command = "select";</code><br>
+		<i>SELECT * FROM test WHERE column1=7</i>
+		<br>
+		<br>
+	<b>SELECT only defined columns from Database</b> <br>
+		<table><tr><th>column1</th><th>column2</th><th>column3</th><tr>
+		<tr><td>5</td><td>Text1</td><td>452</td></tr>
+		<tr><td>6</td><td>Text2</td><td>24</td></tr>
+		<tr><td>7</td><td><b>Text3</b></td><td>25</td></tr>
+		<tr><td>8</td><td>Text4</td><td>8</td></tr></table>
+		<br>
+		<code>msg.column_name = ["column2"];</code><br>
+		<code>msg.column_sort = ["column1","column3"];</code><br>
+		<code>msg.data = [7,25];</code><br>
+		<code>msg.database = "test";</code><br>
+		<code>msg.command = "select";</code><br>
+		<i>SELECT column2 FROM test WHERE column1='7' AND column3='25'</i>
+		<br>
+		<br>
+	<b>UPDATE one value in the existing records in a table</b> <br>
+		<table><tr><th>column1</th><th>column2</th><th>column3</th><tr>
+		<tr><td>5</td><td>Text1</td><td>452</td></tr>
+		<tr><td>6</td><td>Text2</td><td><i>UPDATE</i></td></tr>
+		<tr><td>7</td><td>Text3</td><td>25</td></tr>
+		<tr><td>8</td><td>Text4</td><td>8</td></tr></table>
+		<br>
+		<code>msg.column_name = ["column3"];</code><br>
+		<code>msg.column_data = [UPDATE];</code><br>
+		<code>msg.column_sort = ["column1",column2];</code><br>
+		<code>msg.data = [6,"Text2"];</code><br>
+		<code>msg.database = "test";</code><br>
+		<code>msg.command = "update";</code><br>
+		<i>UPDATE test SET column3='UPDATE' WHERE column1='6' AND column2='Text2'</i>
+		<br>
+		<br>
+	<b>DELETE existing records in a table</b> <br>
+		<table><tr><th>column1</th><th>column2</th><th>column3</th><tr>
+		<tr><td>5</td><td>Text1</td><td>452</td></tr>
+		<tr><td><b>6</b></td><td><b>Text2</b></td><td><b>125</b></td></tr>
+		<tr><td>7</td><td>Text3</td><td>25</td></tr>
+		<tr><td>8</td><td>Text4</td><td>8</td></tr></table>
+		<br>
+		<code>msg.column_sort = ["column1","column2","column3"];</code><br>
+		<code>msg.data = [6,"Text2",125];</code><br>
+		<code>msg.database = "test";</code><br>
+		<code>msg.command = "update";</code><br>
+		<i>DELETE FROM test WHERE column1='6' AND column2='Text2' AND column3='125'</i>
+		
+		
+	
+   </p>
+</script>
+

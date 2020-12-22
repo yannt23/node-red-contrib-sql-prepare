@@ -1,0 +1,13 @@
+{
+    "name"         : "node-red-contrib-sql-prepare",
+    "version"      : "0.0.4",
+    "description"  : "A node which translate an array input into an sql command",
+    "dependencies": {
+    },
+    "keywords": [ "node-red","sql","mysql","sqlite" ],
+    "node-red"     : {
+        "nodes": {
+            "sql": "sql-prepare.js"
+        }
+    }
+}
