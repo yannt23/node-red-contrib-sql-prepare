@@ -76,7 +76,7 @@ You can delete all columns, which have the same statements you define them;
 		*SELECT column2 FROM test WHERE column1='7' AND column3='25'
 
 
-	**UPDATE one value in the existing records in a table</b> <br>
+	**UPDATE one value in the existing records in a table
 		
 		|column1	|column2	|column3|
 		|---------------|:-------------:|------:|
