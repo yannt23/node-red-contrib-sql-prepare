@@ -32,8 +32,8 @@ You can delete all columns, which have the same statements you define them;
 	**INSERT into Database
 		
 		|column1	|column2	|column3|
-		|-----------|:---------:|------:|
-		|5			|  Text   	|  8	|
+		|---------------|:-------------:|------:|
+		|5		|  Text   	|  8	|
 		
 		`msg.column_name` = [column1,column2,column3];
 		`msg.column_sort` = [5,"Text",8];
@@ -45,10 +45,10 @@ You can delete all columns, which have the same statements you define them;
 	**SELECT hole row (*) from Database**
 		
 		|column1	|column2	|column3|
-		|-----------|:---------:|------:|
+		|---------------|:-------------:|------:|
 		|   5		| Text1    	|  452	|
 		|   6		| Text2		|  24	|
-		|   7	    | Text3		|  25	|	
+		|   7	    	| Text3		|  25	|	
 		|   8	 	| Text4		|  8	|
 		
 		`msg.column_name` = [];
@@ -62,10 +62,10 @@ You can delete all columns, which have the same statements you define them;
 	**SELECT only defined columns from Database
 		
 		|column1	|column2	|column3|
-		|-----------|:---------:|------:|
+		|---------------|:-------------:|------:|
 		|   5		| Text1    	|  452	|
 		|   6		| Text2		|  24	|
-		|   7	    | *Text3*	|  25	|	
+		|   7	    	| *Text3*	|  25	|	
 		|   8	 	| Text4		|  8	|
 		
 		`msg.column_name` = ["column2"];
@@ -79,10 +79,10 @@ You can delete all columns, which have the same statements you define them;
 	**UPDATE one value in the existing records in a table</b> <br>
 		
 		|column1	|column2	|column3|
-		|-----------|:---------:|------:|
+		|---------------|:-------------:|------:|
 		|   5		| Text1    	|  452	|
 		|   6		| Text2		| update|
-		|   7	    | Text3		| 25	|	
+		|   7	    	| Text3		| 25	|	
 		|   8	 	| Text4		|  8	|
 		
 		`msg.column_name` = ["column3"];
@@ -97,10 +97,10 @@ You can delete all columns, which have the same statements you define them;
 	**DELETE existing records in a table
 		
 		|column1	|column2	|column3|
-		|-----------|:---------:|------:|
+		|---------------|:-------------:|------:|
 		|   5		| Text1    	|  452	|
 		|   6		| Text2		|  125	|
-		|  ** 7	    | Text3		|  25	|	
+		|  ** 7	    	| Text3		|  25	|	
 		|   8	 	| Text4		|  8	|
 		
 		`msg.column_sort` = ["column1","column2","column3"];
