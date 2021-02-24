@@ -103,8 +103,9 @@ You can delete all columns, which have the same statements you define them;
 		|  ** 7	    	| Text3		|  25	|	
 		|   8	 	| Text4		|  8	|
 		
+		`msg.column_name` = [];
 		`msg.column_sort` = ["column1","column2","column3"];
 		`msg.data` = [6,"Text2",125];
 		`msg.database` = "test";
-		`msg.command` = "update";
+		`msg.command` = "delete";
 		*DELETE FROM test WHERE column1='6' AND column2='Text2' AND column3='125'
